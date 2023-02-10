@@ -6,12 +6,45 @@
 }
 
 header{
-    background-image: linear-gradient(rgba(243, 68, 68, 0.571),rgba(255, 132, 0, 0.386)),url(./images/bg1.jpg);
+    background-image: linear-gradient(rgba(255, 46, 210, 0.367),rgba(255, 132, 0, 0.386)),url(./images/bg1.jpg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     height: 200px;
     position: relative;
+}
+
+
+.overlay{
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    height: 100%;
+    right: 0;
+    bottom: 0;
+    padding: 0 !important;
+    margin: 0 !important;
+    background-color: rgba(10, 10, 10, 0.3);
+}
+
+
+nav{
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 20px 60px 0 60px;
+}
+
+nav h2{
+    color: orange;
+    font-family: cursive;
+    border-bottom: 2px dashed orange;
 }
 
 nav li{
@@ -26,7 +59,14 @@ nav li span{
 }
 
 li a{
-    padding: 5px;
-    background-color: #fff;
+    padding: 10px;
+    font-size: 18px;
+    font-weight: 600;
+    color: white;
     text-decoration: none;
+    transition: all 0.1s ease-in-out;
+}
+
+li a:hover{
+    border-bottom: 2px solid orange;
 }
