@@ -70,3 +70,22 @@ li a{
 li a:hover{
     border-bottom: 2px solid orange;
 }
+
+.cart .fa-shopping-cart{
+    vertical-align: bottom;
+    font-size: 20px;
+    padding-right: 5px;
+}
+
+.cart a{
+    background-color: orange;
+    color: #000;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.cart a:hover{
+    background-color: rgb(255, 181, 43);
+    color: gray;
+    border: none;
+}
