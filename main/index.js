@@ -45,11 +45,28 @@ for (const carts of allCarts) {
      })  
 }
 
+
+const onLoadCartNumbers = () =>{
+    let productNumbers = localStorage.getItem('cartNumbers');
+    if(productNumbers){
+      document.querySelector('.cart span').textContent = productNumbers;
+    }
+}
+
+
 const cartNumber = () =>{
     let productNumbers = localStorage.getItem('cartNumbers');
     productNumbers = parseInt(productNumbers);
-    console.log(productNumbers);
     /* console.log(typeof productNumbers); */
 
-    localStorage.setItem('cartNumbers',1);
+    if(productNumbers){
+        localStorage.setItem('cartNumbers',productNumbers + 1);
+        document.querySelector('.cart span').textContent = productNumbers + 1;
+    }
+    else{
+        localStorage.setItem('cartNumbers', 1);
+        document.querySelector('.cart span').textContent = 1;
+    }
 }
+
+onLoadCartNumbers()
