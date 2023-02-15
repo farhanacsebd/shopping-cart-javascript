@@ -112,4 +112,9 @@ const totalCost = (product) =>{
   }
 }
 
+const displayCart = () =>{
+
+}
+
 onLoadCartNumbers();
+displayCart()
