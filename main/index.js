@@ -113,7 +113,34 @@ const totalCost = (product) =>{
 }
 
 const displayCart = () =>{
+    let cartItems = localStorage.getItem('productInCart');
+    cartItems = JSON.parse(cartItems);
+    console.log(cartItems);
+    let productContainer = document.querySelector('.products');
+    if(cartItems && productContainer){
+      productContainer.innerHTML = '';
+      Object.values(cartItems).map(item =>{
+        console.log(item);
+        const div = document.createElement('div');
+        div.classList.add('tryFixed');
+        div.innerHTML += `
+        <div class="product">
+        <i class="fa-solid fa-circle-xmark"></i>
+        <img src="./images/${item.company}.jpg">
+        <span>${item.company}</span> 
+        </div>
+        <div style="margin-left: 95px" class="price">${item.price}$</div> 
+        <div style="margin-left: 10px" class="quantity">
+        <i style="color:blue" class="fa-solid fa-circle-minus"></i>
+        ${item.inCart}
+        <i style="color:blue" class="fa-solid fa-circle-plus"></i>
+        </div> 
+        <div style="margin-left: 66px" class="total">${item.inCart * item.price}$</div>
+        `;
+        productContainer.appendChild(div);
 
+      })
+    }
 }
 onLoadCartNumbers();
 displayCart()
