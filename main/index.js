@@ -52,8 +52,8 @@ const onLoadCartNumbers = () => {
   }
 };
 
-const cartNumbers = (product) => {
-  //   console.log("the product click", product);
+const cartNumbers = (products) => {
+  //   console.log("the product click", products);
 
   let productNumbers = localStorage.getItem("cartNumbers");
   productNumbers = parseInt(productNumbers);
@@ -67,38 +67,49 @@ const cartNumbers = (product) => {
     document.querySelector(".cart span").textContent = 1;
   }
 
-  setItem(product);
+  setItem(products);
 };
 
-const setItem = (product) => {
+const setItem = (products) => {
   /* console.log('inside the setItem function');
-    console.log("the product click", product); */
+    console.log("the product click", products); */
 
   let cartItems = localStorage.getItem("productInCart");
   cartItems = JSON.parse(cartItems);
   console.log("cartItem", cartItems);
 
   if (cartItems != null) {
-    if (cartItems[product.company] == undefined) {
+    if(cartItems[products.company] == undefined){
       cartItems = {
-        ...cartItems,
-        [product.company]: product,
-      };
+          ...cartItems,
+          [products.company]:products
+      }
     }
-    cartItems[product.company].inCart += 1;
-  } else {
-    product.inCart = 1;
+    cartItems[products.company].inCart += 1;
+  } 
+  else {
+    products.inCart = 1;
     cartItems = {
-      [product.company]: product,
+      [products.company]: products,
     };
   }
 
   localStorage.setItem("productInCart", JSON.stringify(cartItems));
 };
 
-
 const totalCost = (product) =>{
+  // console.log('get in here product',product.price);
+
+  let cartCost = localStorage.getItem('totalCost');
+  //console.log('this is the price of this shoe -',cartCost);
   
+  if(cartCost != null){
+    cartCost = parseInt(cartCost)
+    localStorage.setItem('totalCost',cartCost + product.price);
+  }
+  else{
+    localStorage.setItem('totalCost',product.price)
+  }
 }
 
 onLoadCartNumbers();
