@@ -2,8 +2,8 @@ const carts = document.getElementsByClassName("add-cart");
 
 let products = [
   {
-    company: "Bata",
-    price: 20,
+    company: "Zappos",
+    price: 29,
     inCart: 0,
   },
   {
@@ -18,7 +18,7 @@ let products = [
   },
   {
     company: "Nike",
-    price: 15,
+    price: 66,
     inCart: 0,
   },
   {
@@ -32,7 +32,7 @@ let products = [
     inCart: 0,
   },
   {
-    company: "Vellore",
+    company: "Adidas",
     price: 35,
     inCart: 0,
   },
@@ -41,6 +41,7 @@ let products = [
 for (let i = 0; i < carts.length; i++) {
   carts[i].addEventListener("click", () => {
     cartNumbers(products[i]);
+    totalCost(products[i])
   });
 }
 
@@ -51,8 +52,8 @@ const onLoadCartNumbers = () => {
   }
 };
 
-const cartNumbers = (products) => {
-//   console.log("the product click", products);
+const cartNumbers = (product) => {
+  //   console.log("the product click", product);
 
   let productNumbers = localStorage.getItem("cartNumbers");
   productNumbers = parseInt(productNumbers);
@@ -61,19 +62,43 @@ const cartNumbers = (products) => {
   if (productNumbers) {
     localStorage.setItem("cartNumbers", productNumbers + 1);
     document.querySelector(".cart span").textContent = productNumbers + 1;
-  } 
-  else {
+  } else {
     localStorage.setItem("cartNumbers", 1);
     document.querySelector(".cart span").textContent = 1;
   }
-  
-  setItem(products)
+
+  setItem(product);
+};
+
+const setItem = (product) => {
+  /* console.log('inside the setItem function');
+    console.log("the product click", product); */
+
+  let cartItems = localStorage.getItem("productInCart");
+  cartItems = JSON.parse(cartItems);
+  console.log("cartItem", cartItems);
+
+  if (cartItems != null) {
+    if (cartItems[product.company] == undefined) {
+      cartItems = {
+        ...cartItems,
+        [product.company]: product,
+      };
+    }
+    cartItems[product.company].inCart += 1;
+  } else {
+    product.inCart = 1;
+    cartItems = {
+      [product.company]: product,
+    };
+  }
+
+  localStorage.setItem("productInCart", JSON.stringify(cartItems));
 };
 
 
-const setItem = (products) =>{
-    console.log('insite the setItem fuction');
-    console.log("the product click", products);
+const totalCost = (product) =>{
+  
 }
 
 onLoadCartNumbers();
